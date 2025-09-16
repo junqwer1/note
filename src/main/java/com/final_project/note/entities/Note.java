@@ -1,0 +1,60 @@
+package com.final_project.note.entities;
+
+import com.final_project.global.Entities.BaseEntity;
+import com.final_project.note.constants.ContentStatus;
+import com.final_project.note.constants.NoteStatus;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "NOTE")
+@NoArgsConstructor
+@AllArgsConstructor
+public class Note /*extends BaseEntity*/ {
+
+    @Id
+    @Column(name = "note_id", length = 36)
+    private String noteId; //노트 id
+
+    @Column(name = "member_id")
+    private String memberId; //작성자 회원 ID
+
+    @Column(nullable = false)
+    private String title; // 제목
+
+    @Lob
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String summary; // AI 요약 내용
+
+    @Column(name = "note_status", nullable = false)
+    private String noteStatus; // 노트 처리 상태
+
+    @Lob
+    private String content; //내용
+
+    @Lob
+    private String privateMemo; // 개인 메모
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10, nullable = false)
+    private NoteStatus isPublicNote; //노트 공개 여부
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10, nullable = false)
+    private ContentStatus isPublicContent; //내용 공개 여부
+
+
+}
