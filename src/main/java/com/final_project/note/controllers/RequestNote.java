@@ -7,13 +7,9 @@ import lombok.Data;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RequestNote {
-    @NotBlank
-    private String title; //제목
+    @NotBlank(message = "제목을 입력해주세요.")
+    private String title;
 
-    private String content; //내용
-
-    private String private_memo; //개인 메모
-
-    @NotBlank
-    private String summary;
+    @NotBlank(message = "유튜브 URL을 입력해주세요.")
+    private String youtubeUrl;
 }

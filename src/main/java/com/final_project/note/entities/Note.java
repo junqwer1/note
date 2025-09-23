@@ -1,16 +1,18 @@
 package com.final_project.note.entities;
 
-import com.final_project.global.Entities.BaseEntity;
-import com.final_project.note.constants.ContentStatus;
+import com.final_project.note.constants.IsContentStatus;
+import com.final_project.note.constants.IsNoteStatus;
 import com.final_project.note.constants.NoteStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
+@Data
 @Entity
 @Table(name = "NOTE")
 @NoArgsConstructor
@@ -31,8 +33,9 @@ public class Note /*extends BaseEntity*/ {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String summary; // AI 요약 내용
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "note_status", nullable = false)
-    private String noteStatus; // 노트 처리 상태
+    private NoteStatus noteStatus; // 노트 처리 상태
 
     @Lob
     private String content; //내용
@@ -50,11 +53,10 @@ public class Note /*extends BaseEntity*/ {
 
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
-    private NoteStatus isPublicNote; //노트 공개 여부
+    private IsNoteStatus isPublicNote; //노트 공개 여부
 
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)
-    private ContentStatus isPublicContent; //내용 공개 여부
-
+    private IsContentStatus isPublicContent; //내용 공개 여부
 
 }

@@ -1,6 +1,6 @@
 package com.final_project.note.constants;
 
-public enum ContentStatus {
+public enum IsNoteStatus {
     PUBLIC,
     PRIVATE
 }

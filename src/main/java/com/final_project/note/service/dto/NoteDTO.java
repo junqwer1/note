@@ -1,4 +1,4 @@
-package com.final_project.note.service;
+package com.final_project.note.service.dto;
 
 import lombok.Getter;
 import lombok.Setter;
