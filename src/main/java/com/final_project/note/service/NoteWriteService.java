@@ -1,5 +1,7 @@
 package com.final_project.note.service;
 
+import com.final_project.member.Member;
+import com.final_project.member.MemberUtil;
 import com.final_project.note.constants.IsContentStatus;
 import com.final_project.note.constants.IsNoteStatus;
 import com.final_project.note.constants.NoteStatus;
@@ -23,11 +25,17 @@ public class NoteWriteService {
 
     private final RestTemplate restTemplate;
     private final NoteRepository noteRepository;
+    private final MemberUtil memberUtil;
 
     public Note createNote(RequestNote form) {
 
+        Member member = memberUtil.getMember();
+
         Note note = new Note();
         note.setNoteId(UUID.randomUUID().toString());
+        if (member != null) {
+            note.setMemberId(member.getMemberId());
+        }
         note.setTitle(form.getTitle());
         note.setSummary("");
         note.setNoteStatus(NoteStatus.PROCESSING);
@@ -35,10 +43,10 @@ public class NoteWriteService {
         note.setIsPublicContent(IsContentStatus.PUBLIC);
 
         try{
-            final String pythonApiUrl = "http://localhost:5000/process";
+            final String pythonApiUrl = "http://127.0.0.1:5000/process";
 
             PythonApiRequest pythonApiRequest = new PythonApiRequest(form.getYoutubeUrl());
-            HttpEntity<RequestNote> request = new HttpEntity<>(form);
+            HttpEntity<PythonApiRequest> request = new HttpEntity<>(pythonApiRequest);
 
             GeminiResponse response = restTemplate.postForObject(pythonApiUrl, request, GeminiResponse.class);
 
@@ -46,11 +54,12 @@ public class NoteWriteService {
                 throw new RuntimeException("노트 생성에 실패했습니다.");
             }
 
-            note.setTitle(response.getYoutubeUrl());
+//            note.setTitle(response.getYoutubeUrl());
             note.setSummary(response.getSummary());
             note.setNoteStatus(NoteStatus.COMPLETED);
         } catch (Exception e) {
             note.setNoteStatus(NoteStatus.FAILED);
+            noteRepository.save(note);
             throw new RuntimeException("노트 생성 실패" + e.getMessage());
         }
 

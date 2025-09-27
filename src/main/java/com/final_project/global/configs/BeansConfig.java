@@ -2,6 +2,7 @@ package com.final_project.global.configs;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.final_project.member.MemberUtil;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
@@ -38,5 +39,11 @@ public class BeansConfig {
         om.registerModule(new JavaTimeModule()); // java8 data & time api - java.time 패키지
 
         return om;
+    }
+
+    @Lazy
+    @Bean
+    public MemberUtil memberUtil() {
+        return new MemberUtil();
     }
 }

@@ -36,56 +36,56 @@ public class NoteController {
             jsonData.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
             jsonData.setMessage("노트 생성 중 오류가 발생했습니다." + e.getMessage());
 
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(jsonData)
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(jsonData);
         }
 
     }
 
-    /*노트 상태 조회*/
+    /*노트 상태 조회*//*
     @GetMapping("/status")
     public JSONData status(){
 
     }
 
-    /*노트 상세 조회*/
+    *//*노트 상세 조회*//*
     @GetMapping("/Detail/{note_id}")
     public JSONData detail(@PathVariable("note_id") String noteId){
 
     }
 
-    /*노트 제목 수정*/
+    *//*노트 제목 수정*//*
     @PutMapping
     public JSONData titleUpdate() {
 
     }
 
-    /*메모 작성 및 수정*/
+    *//*메모 작성 및 수정*//*
     @PutMapping("/Detail")
     public JSONData memoUpdate() {
 
     }
 
-    /*태그 추가 및 수정*/
+    *//*태그 추가 및 수정*//*
     @PutMapping("/Detail")
     public JSONData tagUpdate() {
 
     }
 
-    /*노트 삭제*/
+    *//*노트 삭제*//*
     @DeleteMapping("/deletes")
     public JSONData deletes(@RequestParam("note_id") List<String> note_ids){
 
     }
 
-    /*퀴즈 풀이 제출*/
+    *//*퀴즈 풀이 제출*//*
     @PostMapping("/quiz/submit")
     public JSONData submit(){
         
     }
 
-    /*퀴즈 목록 조회*/
+    *//*퀴즈 목록 조회*//*
     @GetMapping("/quiz")
     public JSONData quiz(@ModelAttribute QuizSearch search){
 
-    }
+    }*/
 }

@@ -1,11 +1,13 @@
 package com.final_project.note.entities;
 
+import com.final_project.global.Entities.BaseEntity;
 import com.final_project.note.constants.IsContentStatus;
 import com.final_project.note.constants.IsNoteStatus;
 import com.final_project.note.constants.NoteStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -17,7 +19,8 @@ import java.time.LocalDateTime;
 @Table(name = "NOTE")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Note /*extends BaseEntity*/ {
+@EqualsAndHashCode(callSuper = false)
+public class Note extends BaseEntity {
 
     @Id
     @Column(name = "note_id", length = 36)
@@ -42,14 +45,6 @@ public class Note /*extends BaseEntity*/ {
 
     @Lob
     private String privateMemo; // 개인 메모
-
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    @Column(nullable = false)
-    private LocalDateTime updatedAt;
 
     @Enumerated(EnumType.STRING)
     @Column(length = 10, nullable = false)

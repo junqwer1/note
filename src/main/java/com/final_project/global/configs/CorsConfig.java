@@ -14,7 +14,7 @@ import java.util.List;
 @Configuration
 public class CorsConfig {
 
-    @Value("${cors.allowed}")
+    /*@Value("${cors.allowed}")
     private String allowedOrigin;
 
     @Bean
@@ -37,5 +37,5 @@ public class CorsConfig {
         source.registerCorsConfiguration("/**", config);
 
         return new CorsFilter(source);
-    }
+    }*/
 }
