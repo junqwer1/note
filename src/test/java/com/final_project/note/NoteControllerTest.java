@@ -43,7 +43,7 @@ public class NoteControllerTest {
         // Given: 테스트를 위한 요청 데이터와 Mock 서비스 설정
         RequestNote requestNote = new RequestNote();
         requestNote.setTitle("테스트 노트");
-        requestNote.setYoutubeUrl("https://www.youtube.com/watch?v=NNClHeXzIBA&list=PLumVmq_uRGHgBrimIp2-7MCnoPUskVMnd&index=2");
+        requestNote.setYoutubeUrl("https://www.youtube.com/watch?v=NNClHeXzIBA&list=PLumVmq_uRGHgBrimIp2-7MCnoPUskVMnd");
 
 //        Note returnedNote = new Note();
 //        returnedNote.setNoteId("some-uuid");
@@ -63,7 +63,7 @@ public class NoteControllerTest {
 //                .andExpect(jsonPath("$.data.memberId").value("user-id")) // memberId 검증 추가
 //                .andExpect(jsonPath("$.data.summary").value("AI 요약 내용입니다."))
 //                .andExpect(jsonPath("$.data.noteStatus").value("COMPLETED"))
-                .andExpect(jsonPath("$.data.title").value("실제 AI 테스트 노트"))
+                .andExpect(jsonPath("$.data.title").value("테스트 노트"))
                 .andExpect(jsonPath("$.data.summary", is(notNullValue())))
                 .andExpect(jsonPath("$.data.noteStatus").value("COMPLETED"))
                 .andDo(print());
