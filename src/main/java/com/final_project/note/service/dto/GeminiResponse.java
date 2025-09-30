@@ -8,8 +8,7 @@ import java.util.Map;
 @Data
 public class GeminiResponse {
     private String youtubeUrl;
-    private String transcript;
     private String summary;
-    private List<Map<String, Object>> generatedQuiz;
-    private List<String> generatedTags;
+    private List<QuizDTO> quiz;
+    private List<TagDTO> tags;
 }

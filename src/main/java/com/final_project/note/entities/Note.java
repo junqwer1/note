@@ -5,17 +5,17 @@ import com.final_project.note.constants.IsContentStatus;
 import com.final_project.note.constants.IsNoteStatus;
 import com.final_project.note.constants.NoteStatus;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
+@Builder
 @Table(name = "NOTE")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,8 +26,11 @@ public class Note extends BaseEntity {
     @Column(name = "note_id", length = 36)
     private String noteId; //노트 id
 
-    @Column(name = "member_id")
+    @Column(name = "member_id", length = 45)
     private String memberId; //작성자 회원 ID
+
+    @Column(nullable = false)
+    private String youtubeUrl; // 노트가 생성된 원본 유튜브 URL
 
     @Column(nullable = false)
     private String title; // 제목
@@ -41,17 +44,19 @@ public class Note extends BaseEntity {
     private NoteStatus noteStatus; // 노트 처리 상태
 
     @Lob
-    private String content; //내용
-
-    @Lob
     private String privateMemo; // 개인 메모
 
-    @Enumerated(EnumType.STRING)
-    @Column(length = 10, nullable = false)
-    private IsNoteStatus isPublicNote; //노트 공개 여부
+    // Note 하나는 여러 개의 Tag를 가짐 (1:N 관계)
+    @OneToMany(mappedBy = "note", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Tag> tags = new ArrayList<>();
 
-    @Enumerated(EnumType.STRING)
-    @Column(length = 10, nullable = false)
-    private IsContentStatus isPublicContent; //내용 공개 여부
+    // 내용
+    @OneToMany(mappedBy = "note", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Content> content = new ArrayList<>();
+
+    // 퀴즈
+    @OneToMany(mappedBy = "note", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Quiz> quizzes = new ArrayList<>();
+
 
 }

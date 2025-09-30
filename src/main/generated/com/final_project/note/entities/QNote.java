@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -21,14 +22,10 @@ public class QNote extends EntityPathBase<Note> {
 
     public final com.final_project.global.Entities.QBaseEntity _super = new com.final_project.global.Entities.QBaseEntity(this);
 
-    public final StringPath content = createString("content");
+    public final ListPath<Content, QContent> content = this.<Content, QContent>createList("content", Content.class, QContent.class, PathInits.DIRECT2);
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
-
-    public final EnumPath<com.final_project.note.constants.IsContentStatus> isPublicContent = createEnum("isPublicContent", com.final_project.note.constants.IsContentStatus.class);
-
-    public final EnumPath<com.final_project.note.constants.IsNoteStatus> isPublicNote = createEnum("isPublicNote", com.final_project.note.constants.IsNoteStatus.class);
 
     public final StringPath memberId = createString("memberId");
 
@@ -38,12 +35,18 @@ public class QNote extends EntityPathBase<Note> {
 
     public final StringPath privateMemo = createString("privateMemo");
 
+    public final ListPath<Quiz, QQuiz> quizzes = this.<Quiz, QQuiz>createList("quizzes", Quiz.class, QQuiz.class, PathInits.DIRECT2);
+
     public final StringPath summary = createString("summary");
+
+    public final ListPath<Tag, QTag> tags = this.<Tag, QTag>createList("tags", Tag.class, QTag.class, PathInits.DIRECT2);
 
     public final StringPath title = createString("title");
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
+
+    public final StringPath youtubeUrl = createString("youtubeUrl");
 
     public QNote(String variable) {
         super(Note.class, forVariable(variable));
