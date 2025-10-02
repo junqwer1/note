@@ -3,8 +3,10 @@ package com.final_project.note;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.final_project.member.Member;
 import com.final_project.member.MemberUtil;
+import com.final_project.note.constants.IsContentStatus;
 import com.final_project.note.constants.NoteStatus;
 import com.final_project.note.controllers.RequestNote;
+import com.final_project.note.entities.Content;
 import com.final_project.note.entities.Note;
 import com.final_project.note.service.NoteWriteService;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,6 +19,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -58,7 +63,19 @@ public class NoteControllerTest {
         requestNote = new RequestNote();
         requestNote.setTitle("테스트 노트");
         requestNote.setYoutubeUrl("https://www.youtube.com/watch?v=yZVTnaudGXk&list=PLumVmq_uRGHgBrimIp2-7MCnoPUskVMnd&index=6");
-        requestNote.setContents()
+
+        Content content1 = Content.builder()
+                .text("이것은 첫 번째 노트 내용입니다.")
+                .isPublic(IsContentStatus.PUBLIC) // 공개 설정
+                .build();
+
+        Content content2 = Content.builder()
+                .text("이것은 비공개 메모입니다.")
+                .isPublic(IsContentStatus.PRIVATE) // 비공개 설정
+                .build();
+
+        List<Content> contents = Arrays.asList(content1, content2);
+        requestNote.setContents(contents);
 
 
         // When & Then: API를 호출하고 결과를 검증

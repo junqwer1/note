@@ -22,7 +22,7 @@ public class QuizResult {
     private String memberId; // 퀴즈를 푼 회원의 ID
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "noteId", nullable = false)
+    @JoinColumn(name = "note_id", nullable = false)
     @JsonIgnore
     private Note note; // 응시한 퀴즈가 포함된 노트
 

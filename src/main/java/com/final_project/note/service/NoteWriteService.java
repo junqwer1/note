@@ -4,8 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.final_project.member.Member;
 import com.final_project.member.MemberUtil;
-import com.final_project.note.constants.IsContentStatus;
-import com.final_project.note.constants.IsNoteStatus;
 import com.final_project.note.constants.NoteStatus;
 import com.final_project.note.controllers.RequestNote;
 import com.final_project.note.entities.Note;
@@ -102,6 +100,13 @@ public class NoteWriteService {
                         })
                         .collect(Collectors.toList());
                 note.setQuizzes(quizzes);
+            }
+
+            if (form.getContents() != null && !form.getContents().isEmpty()) {
+                // 1. 전달받은 Content 목록의 각 항목에 Note 엔티티를 설정합니다. (연관관계 매핑)
+                form.getContents().forEach(content -> content.setNote(note));
+                // 2. Note 엔티티에 Content 목록을 설정합니다.
+                note.setContent(form.getContents());
             }
 
         } catch (Exception e) {

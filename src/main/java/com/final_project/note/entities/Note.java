@@ -58,5 +58,9 @@ public class Note extends BaseEntity {
     @OneToMany(mappedBy = "note", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Quiz> quizzes = new ArrayList<>();
 
+    // 퀴즈 정답
+    @OneToMany(mappedBy = "note", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Quiz> quizResult = new ArrayList<>();
+
 
 }

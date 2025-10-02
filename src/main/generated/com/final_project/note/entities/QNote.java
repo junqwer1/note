@@ -35,6 +35,8 @@ public class QNote extends EntityPathBase<Note> {
 
     public final StringPath privateMemo = createString("privateMemo");
 
+    public final ListPath<Quiz, QQuiz> quizResult = this.<Quiz, QQuiz>createList("quizResult", Quiz.class, QQuiz.class, PathInits.DIRECT2);
+
     public final ListPath<Quiz, QQuiz> quizzes = this.<Quiz, QQuiz>createList("quizzes", Quiz.class, QQuiz.class, PathInits.DIRECT2);
 
     public final StringPath summary = createString("summary");
