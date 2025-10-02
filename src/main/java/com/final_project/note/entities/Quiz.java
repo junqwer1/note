@@ -20,7 +20,7 @@ public class Quiz {
     @Column(name = "question_text", nullable = false)
     private String question; // 퀴즈 질문
 
-    @Lob // ◀◀◀ 1. @Lob 어노테이션 추가
+    @Lob
     @Column(nullable = false)
     private String options;
 
@@ -28,7 +28,7 @@ public class Quiz {
     private String answer; // 정답
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "noteId")
+    @JoinColumn(name = "note_id")
     @JsonIgnore
     private Note note;
 

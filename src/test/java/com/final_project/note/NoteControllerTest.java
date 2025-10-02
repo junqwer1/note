@@ -36,6 +36,8 @@ public class NoteControllerTest {
     @Autowired
     private ObjectMapper om;
 
+    RequestNote requestNote;
+
     @MockBean // ◀◀◀ 1. MemberUtil을 가짜 객체로 만듭니다.
     private MemberUtil memberUtil;
 
@@ -53,9 +55,11 @@ public class NoteControllerTest {
     @DisplayName("노트 생성 API 통합 테스트")
     void writeTest() throws Exception {
         // Given: 테스트를 위한 요청 데이터와 Mock 서비스 설정
-        RequestNote requestNote = new RequestNote();
+        requestNote = new RequestNote();
         requestNote.setTitle("테스트 노트");
-        requestNote.setYoutubeUrl("https://www.youtube.com/watch?v=P6AgXuh-fxA&list=PLumVmq_uRGHgBrimIp2-7MCnoPUskVMnd&index=4");
+        requestNote.setYoutubeUrl("https://www.youtube.com/watch?v=yZVTnaudGXk&list=PLumVmq_uRGHgBrimIp2-7MCnoPUskVMnd&index=6");
+        requestNote.setContents()
+
 
         // When & Then: API를 호출하고 결과를 검증
         mockMvc.perform(post("/notes")

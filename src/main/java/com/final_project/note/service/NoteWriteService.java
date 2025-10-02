@@ -41,8 +41,7 @@ public class NoteWriteService {
 
         // 2. 로그인 상태가 아니라면, 예외를 발생시켜 저장을 중단합니다.
         if (member == null) {
-            // SecurityConfig에서 이미 차단하므로 이 코드는 실행되지 않는 것이 정상이지만,
-            // 더 안전한 코드를 위한 최종 방어선 역할을 합니다.
+            // 더 안전한 코드를 위한 최종 방어선 역할.
             throw new RuntimeException("로그인한 사용자만 노트를 저장할 수 있습니다.");
         }
 

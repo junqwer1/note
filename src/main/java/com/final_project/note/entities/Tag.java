@@ -24,7 +24,7 @@ public class Tag {
 
     // Tag는 Note에 속해있는 N:1 관계
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "noteId") // 외래 키
+    @JoinColumn(name = "note_id") // 외래 키
     @JsonIgnore // API 응답 시 Note -> Tag -> Note 무한 루프 방지
     private Note note;
 }

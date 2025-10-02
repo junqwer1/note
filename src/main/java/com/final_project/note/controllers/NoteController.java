@@ -47,13 +47,14 @@ public class NoteController {
 
     }
 
-    *//*노트 상세 조회*//*
+    *//*노트 상세 조회*/
     @GetMapping("/Detail/{note_id}")
     public JSONData detail(@PathVariable("note_id") String noteId){
-
+//        Note data = infoService.get(noteId);
+        return null;
     }
 
-    *//*노트 제목 수정*//*
+    /*노트 제목 수정*//*
     @PutMapping
     public JSONData titleUpdate() {
 
@@ -62,12 +63,6 @@ public class NoteController {
     *//*메모 작성 및 수정*//*
     @PutMapping("/Detail")
     public JSONData memoUpdate() {
-
-    }
-
-    *//*태그 추가 및 수정*//*
-    @PutMapping("/Detail")
-    public JSONData tagUpdate() {
 
     }
 
