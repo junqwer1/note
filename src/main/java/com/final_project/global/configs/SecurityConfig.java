@@ -1,6 +1,7 @@
 package com.final_project.global.configs;
 
-import com.final_project.member.filters.LoginFilter;
+//import com.final_project.global.filters.JwtAuthenticationFilter;
+//import com.final_project.member.filters.LoginFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.filters.CorsFilter;
@@ -25,7 +26,7 @@ import java.util.List;
 public class SecurityConfig {
 
 //    private final CorsFilter corsFilter;
-    private final LoginFilter loginFilter;
+//    private final LoginFilter loginFilter;
 
     /*@Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -62,10 +63,11 @@ public class SecurityConfig {
                 .httpBasic(c -> c.disable())
                 .csrf(c -> c.disable())
                 .sessionManagement(c -> c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(loginFilter, UsernamePasswordAuthenticationFilter.class)
+//                .addFilterBefore(loginFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("/notes/**").authenticated() // /notes/로 시작하는 모든 요청은 인증 필요
-                        .anyRequest().permitAll() // 그 외 모든 요청은 허용
+//                        .requestMatchers("/notes/**").authenticated() // /notes/로 시작하는 모든 요청은 인증 필요
+                        .requestMatchers("/notes/**").permitAll()
+//                        .anyRequest().permitAll() // 그 외 모든 요청은 허용
                 )
                 .cors(c -> c.configurationSource(corsConfigurationSource())); // CORS 설정 추가
 

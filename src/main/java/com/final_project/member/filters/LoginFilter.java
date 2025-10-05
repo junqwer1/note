@@ -23,7 +23,7 @@ import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
 
-@Component
+/*@Component
 @RequiredArgsConstructor
 public class LoginFilter extends GenericFilterBean {
 
@@ -48,10 +48,10 @@ public class LoginFilter extends GenericFilterBean {
             return; // 토큰이 없는 일반 요청인 경우는 처리 X
         }
 
-        /**
+        *//**
          * 1. 토큰이 있으면, member-service 인스턴스에서 회원 정보 조회
          * 2. 로그인 처리
-         */
+         *//*
         try {
             // member-service의 URL을 설정 파일(application.yml)에서 관리하는 것이 좋습니다.
             String memberServiceUrl = "http://localhost:8081/api/v1/member"; // member-service의 회원정보 조회 API
@@ -87,4 +87,4 @@ public class LoginFilter extends GenericFilterBean {
         }
         return null;
     }
-}
+}*/

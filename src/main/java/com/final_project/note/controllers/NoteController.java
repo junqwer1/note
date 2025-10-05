@@ -12,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -41,18 +43,18 @@ public class NoteController {
 
     }
 
-    /*노트 상태 조회*//*
-    @GetMapping("/status")
+    /*노트 상태 조회*/
+    /*@GetMapping("/status/{note_id}")
     public JSONData status(){
 
-    }
+    }*/
 
-    *//*노트 상세 조회*/
-    @GetMapping("/Detail/{note_id}")
+    /*노트 상세 조회*/
+    /*@GetMapping("/Detail/{note_id}")
     public JSONData detail(@PathVariable("note_id") String noteId){
 //        Note data = infoService.get(noteId);
         return null;
-    }
+    }*/
 
     /*노트 제목 수정*//*
     @PutMapping
