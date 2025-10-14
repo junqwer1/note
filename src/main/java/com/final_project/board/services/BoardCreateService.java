@@ -5,12 +5,16 @@ import com.final_project.board.entities.Board;
 import com.final_project.board.repositories.BoardRepository;
 import com.final_project.member.Member;
 import com.final_project.member.MemberUtil;
+import com.final_project.note.constants.IsContentStatus;
+import com.final_project.note.entities.Content;
 import com.final_project.note.entities.Note;
 import com.final_project.note.repositories.NoteRepository;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.BadRequestException;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
 
 @Lazy
 @Service
@@ -22,23 +26,30 @@ public class BoardCreateService {
     private final MemberUtil memberUtil;
 
     public Board boardCreate(RequestBoard form) throws BadRequestException {
-        // 1. noteId로 원본 노트를 찾습니다.
-        Note note = noteRepository.findById(form.getNoteId())
-                .orElseThrow(() -> new IllegalArgumentException("노트를 찾을 수 없습니다."));
 
         Member member = memberUtil.getMember();
         if (member == null) {
             throw new BadRequestException("로그인 후 이용해주세요.");
         }
 
+        Note note = noteRepository.findById(form.getNoteId())
+                .orElseThrow(() -> new IllegalArgumentException("노트를 찾을 수 없습니다."));
+
         if (!note.getMemberId().equals(member.getMemberId())) {
             throw new SecurityException("자신이 작성한 노트만 게시할 수 있습니다."); // 접근 거부 예외 발생
         }
 
+        String publicContent = note.getContent().stream()
+                .filter(content -> content.getIsPublic() == IsContentStatus.PUBLIC)
+                .map(Content::getText)
+                .collect(Collectors.joining("\n\n"));
+
         // 2. 노트의 정보를 '복사'하여 게시글 엔티티를 생성
         Board board = Board.builder()
+                .noteId(note.getNoteId())
                 .title(note.getTitle())       // 노트의 제목을 복사
                 .author(note.getMemberId()) // 노트의 memberId를 복사
+                .content(publicContent)
                 .viewCount(0L)
                 .build();
 
