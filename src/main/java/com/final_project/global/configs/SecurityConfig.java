@@ -67,6 +67,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req -> req
 //                        .requestMatchers("/notes/**").authenticated() // /notes/로 시작하는 모든 요청은 인증 필요
                         .requestMatchers("/notes/**").permitAll()
+                        .requestMatchers("/board/**").permitAll()
 //                        .anyRequest().permitAll() // 그 외 모든 요청은 허용
                 )
                 .cors(c -> c.configurationSource(corsConfigurationSource())); // CORS 설정 추가
