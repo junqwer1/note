@@ -3,6 +3,7 @@ package com.final_project.board.controllers;
 import com.final_project.board.entities.Board;
 import com.final_project.board.services.BoardCreateService;
 import com.final_project.board.services.BoardInfoService;
+import com.final_project.board.services.dto.BoardDetailResponse;
 import com.final_project.global.rests.JSONData;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -79,7 +80,7 @@ public class BoardController {
     @GetMapping("/view/{id}")
     public ResponseEntity<JSONData> view(@PathVariable("id") Long boardId) {
         try {
-            Board board = infoService.get(boardId);
+            BoardDetailResponse board = infoService.get(boardId);
 
             JSONData jsonData = new JSONData(board);
 

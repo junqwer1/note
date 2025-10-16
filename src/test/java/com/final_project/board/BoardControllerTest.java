@@ -42,7 +42,7 @@ public class BoardControllerTest {
 
     @Test
     void createBoard() throws Exception{
-        String noteId = "a3c1e550-3db5-455e-8637-5c85890b2d15";
+        String noteId = "009f51b3-81d2-4309-81da-240d4aca4609";
 
         RequestBoard requestBoard = new RequestBoard();
         requestBoard.setNoteId(noteId);
@@ -66,7 +66,7 @@ public class BoardControllerTest {
 
     @Test
     void viewBoard() throws Exception{
-        mockMvc.perform(get("/board/view/" + 302))
+        mockMvc.perform(get("/board/view/" + 502))
                 .andDo(print());
     }
 }

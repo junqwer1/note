@@ -39,17 +39,11 @@ public class BoardCreateService {
             throw new SecurityException("자신이 작성한 노트만 게시할 수 있습니다."); // 접근 거부 예외 발생
         }
 
-        String publicContent = note.getContent().stream()
-                .filter(content -> content.getIsPublic() == IsContentStatus.PUBLIC)
-                .map(Content::getText)
-                .collect(Collectors.joining("\n\n"));
-
         // 2. 노트의 정보를 '복사'하여 게시글 엔티티를 생성
         Board board = Board.builder()
                 .noteId(note.getNoteId())
                 .title(note.getTitle())       // 노트의 제목을 복사
                 .author(note.getMemberId()) // 노트의 memberId를 복사
-                .content(publicContent)
                 .viewCount(0L)
                 .build();
 

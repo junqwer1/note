@@ -28,10 +28,6 @@ public class Board extends BaseEntity {
 
     private long viewCount; // 조회수
 
-    @Lob
-    @Column(columnDefinition = "TEXT", nullable = false)
-    private String content;
-
     @Column(name = "note_id", nullable = false, unique = true)
     private String noteId; // 원본 노트 ID (게시글 생성 시 사용)
 
